@@ -9,7 +9,6 @@ import java.sql.Date;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
 //    private Integer id;
     @Column
     private int rollNo;

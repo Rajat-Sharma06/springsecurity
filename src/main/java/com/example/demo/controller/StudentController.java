@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
+
 
 @RestController
 public class StudentController {
@@ -34,15 +37,43 @@ public class StudentController {
     repo.save(student);
     return true;
   }
-  @PutMapping("/student/update/{id}")
-  public Student updateStudents(@PathVariable int id){
-   Student student= repo.findById(id).get();
-   student.setName("poonam");
+    @PutMapping("/student/update/{id}")
+    public boolean updateStudents(@PathVariable int id) {
+    try {
 
-//   student.setPercentage(92);
-   repo.save(student);
-   return student;
-  }
+        Optional<Student> optionalStudent = repo.findById(id); // Get the Optional object
+        if (optionalStudent.isPresent()) { // Check if the student exists
+            Student student = optionalStudent.get(); // Retrieve the student object
+            student.setName("poonam");
+            // student.setPercentage(92); // Uncomment if needed
+            repo.save(student); // Save the updated student back to the database
+            return true;
+        }
+    }
+        catch(Exception e){
+         e.printStackTrace();
+        }
+        System.out.println("ERROR: An error occurred");
+        return false;
+    }
+
+
+
+    //  @PutMapping("/student/update/{id}")
+//  public boolean updateStudents(@PathVariable int id){
+//
+//      if(repo.findById(id)!=null){
+//          Student student= repo.findById(id).get();
+//          student.setName("poonam");
+//
+////   student.setPercentage(92);
+//          repo.save(student);
+//          return true;
+//
+//      }
+//      System.out.println("Ja Bhag ja Jhein sy");
+//      return false;
+//  }
   @DeleteMapping("/student/delete/{id}")
     public void removeStudent(@PathVariable int id){
     Student student=repo.findById(id).get();
