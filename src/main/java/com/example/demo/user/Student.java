@@ -1,24 +1,25 @@
-package com.example.demo.User;
+package com.example.demo.user;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
-
 @Entity
-@Table(name="student")
+@Table(name = "student")
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer id;
-    @Column
     private int rollNo;
+
     @Column
     private String name;
+
     @Column
     private Float percentage;
+
     @Column
     private String branch;
 
+    // Getters and Setters
     public int getRollNo() {
         return rollNo;
     }
@@ -47,14 +48,11 @@ public class Student {
         return branch;
     }
 
-
-
     public void setBranch(String branch) {
         this.branch = branch;
     }
 
-
-
+    // toString Method
     @Override
     public String toString() {
         return "Student{" +
@@ -65,11 +63,12 @@ public class Student {
                 '}';
     }
 
+    // Default Constructor
     public Student() {
     }
 
-    public Student( String branch, Float percentage, String name) {
-
+    // Parameterized Constructor
+    public Student(String branch, Float percentage, String name) {
         this.branch = branch;
         this.percentage = percentage;
         this.name = name;
