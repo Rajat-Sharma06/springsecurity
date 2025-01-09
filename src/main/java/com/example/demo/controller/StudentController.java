@@ -52,7 +52,7 @@ public class StudentController {
             e.printStackTrace();
 
         }
-        System.out.println("ERROR: An error occurred");
+        System.out.println("Given Roll Number is Not Present");
         return false;
     }
 
